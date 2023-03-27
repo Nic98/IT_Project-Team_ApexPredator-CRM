@@ -1,0 +1,289 @@
+:root{
+    --lightgray: #F7F7F7;
+    --darkblue: #032444;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #F7F7F7;
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+    overflow:hidden;
+}
+
+
+
+.nav_list {
+    padding-inline-start: 0%;
+    list-style-type: none;
+}
+
+.sidebar {
+    height:100%;
+    position:absolute;
+    top:0;
+    left:0;
+    width:78px;
+    background-color: #11101d;
+    padding:6px 14px;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active{
+    width:240px;
+}
+
+.sidebar .logo_content .logo {
+    color: #fff;
+    display: flex;
+    height: 50px;
+    width: 100%;
+    align-items: center;
+    transition: all 0.5s ease;
+    /* opacity: 0;
+    pointer-events: none; */
+
+}
+
+/* .sidebar.active .logo_content .logo {
+    opacity: 1;
+    pointer-events: none;
+} */
+
+.logo_content .logo i {
+    font-size: 28px;
+    margin-right: 5px;
+}
+
+
+
+.logo_content .logo .logo_name {
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.sidebar #btn {
+    color: #fff;
+    position:absolute;
+    left: 50%;
+    top:6px;
+    font-size: 20px;
+    height:50px;
+    width:50px;
+    text-align: center;
+    line-height: 50px;
+    transform: translateX(-50%);
+}
+
+.sidebar.active #btn{
+    left: 90%;
+}
+
+/* .sidebar {
+    margin-top: 20px;
+} */
+
+.sidebar ul {
+    margin-top: 20px;
+    
+}
+.sidebar ul li {
+    list-style: none;
+    height: 50px;
+    width:100%;
+    position:relative;
+    margin: 0 0px;
+    line-height: 50px;
+}
+
+.sidebar ul li .tooltip{
+    position: absolute;
+    left:122px;
+    top:10%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    border-radius: 6px;
+    height:35px;
+    width:122px;
+    background: #fff;
+    line-height: 35px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    transition:0s;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 3000 !important;
+}
+
+.sidebar.active ul li .tooltip {
+    display:none;
+}
+
+.sidebar ul li:hover .tooltip{
+    transition: all 0.5s ease;
+    opacity: 1;
+    top:50%;
+    z-index: 3;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    transition: all 0.4s ease;
+    border-radius: 6px;
+    height:100%;
+    white-space: nowrap;
+}
+
+.sidebar ul li a:hover {
+    color: #11101d;
+    background: #fff;
+    padding: 5px;
+}
+
+.sidebar ul li i {
+    height:50px;
+    min-width: 50px;
+    border-radius: 12px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.sidebar .links_name{
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s ease;
+}
+
+.sidebar.active .links_name {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.sidebar .logo_name {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.sidebar.active .logo_name {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.home_content {
+    
+    position: absolute;
+    height: 100%;
+    width: calc(100% - 78px);
+    left:78px;
+    transition: all 0.5s ease;
+    
+}
+
+.home_content .text {
+    font-size: 25px;
+    font-weight: 500;
+    color: #1d1b31;
+    margin:12px;
+}
+
+.sidebar.active ~ .home_content {
+    width: calc(100% - 240px);
+    left:240px
+}
+
+
+
+/* header */
+
+.workspaceheader--container{
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    justify-content: space-between;
+    padding-left: 18px;
+    padding-right: 18px;
+    box-shadow: 3px 3px 3px lightgray;
+
+
+
+}
+
+
+
+
+.searchbar--container{
+    height: inherit;
+    width: 40%;
+    flex-direction: column;
+    justify-content:center;
+}
+
+.searchbar--container>*{
+    margin: 0;
+}
+
+.seachbar{
+    max-width: 400px;
+    padding: 4px;
+    padding-left: 18px;
+    box-shadow: none;
+    border: solid 1px var(--lightgray);
+    background: #FBFBFB;
+}
+
+.settingbar--container>*+*{
+    margin-left: 16px;
+}
+
+.profilepic{
+    height: 44px;
+    width: 44px;
+    border: solid 1px lightgray;
+    border-radius: 50%;
+
+}
+
+.fa-moon, .fa-cog, .fa-bell{
+    font-size: large;
+}
+
+.font--headerrole{
+    font-size: small;
+  
+}
+
+.headerName{
+    margin-left: 22px;
+}
+
+.headerrole--container{
+    flex-direction: row-reverse;
+    justify-content: center;
+}
+
+.headerrole--container>*{
+    margin: 0 !important;
+    color: black;
+}
+
+.content-container{
+ 
+    max-height: 100%;
+    padding: 20px;
+   
+    width: 100%;
+    overflow-y: scroll !important;
+
+}
+
+.content-container>*{
+    z-index: 0;
+}

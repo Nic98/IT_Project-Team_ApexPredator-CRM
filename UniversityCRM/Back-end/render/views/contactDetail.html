@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview</title>
+    <link rel="stylesheet" href="../Css/overall.css">
+    <link rel="stylesheet" href="../Css/overview.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../Css/calendar.css">
+    <link rel="stylesheet" href="../Css/profile.css">
+	
+    <script src="https://kit.fontawesome.com/1ee5d6d5b7.js" crossorigin="anonymous"></script>
+    <script src="../Javascript/bootstrap.min.js"></script>
+    <script src="../Javascript/jquery.min.js"></script>
+    <script src="../Javascript/main.js"></script>
+    <script src="../Javascript/popper.js"></script>
+    <script src="../Javascript/loginModal.js"></script>
+    <script src="../Javascript/switchmode.js"></script>
+    <script src="../Javascript/sidebar.js"></script>
+    <script src="../Components/header.js"></script>
+    <script src="../Components/sidebar.js" type="text/javascript" defer></script>
+
+</head>
+
+<body class="flexbox workspace--flex">
+   
+    <!-- <sidebar-component></sidebar-component> -->
+    <div class = "workspace--flexchild2  sidebar ">
+        <div class = "logo_content">
+            <div class = "logo">               
+                <div class = "logo_name"> ApexPredator </div>
+                <i class="fas fa-bars" id="btn" onclick="expandSideBar()"></i>
+            </div>
+        </div>
+
+        <ul class="nav_list">
+            <li>
+                <a href="overview.html">
+                    <i class="fas fa-home"></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+                <span class = "tooltip">Dashboard</span>
+            </li>
+
+            <li>
+                <a href="Contact.html">
+                    <i class="fas fa-user-friends"></i>
+                    <span class="links_name">Contacts</span>
+                </a>
+                <span class = "tooltip">Contacts</span>
+            </li>
+
+            <li>
+                <a href="task.html">
+                    <i class="fas fa-tasks"></i>
+                    <span class="links_name">Tasks</span>
+                </a>
+                <span class = "tooltip">Tasks</span>
+            </li>
+
+            <li>
+                <a href="profile.html">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="links_name">Profile</span>
+                </a>
+                <span class = "tooltip">Profile</span>
+            </li>             
+        </ul> 
+    </div>
+    
+    
+
+    <div class="workspace--flexchild2 home_content">
+        <header-component></header-component>
+      
+            
+
+        
+
+        <div class="content-container">
+            
+            <p class="font--overview">Contact Detail</p>
+            <div class="profile--container">
+                <div class="flexbox contactd--imgcontainer">
+                 
+                    
+                    
+  
+                    <input type="file" name="" id="uploudimage" hidden/>
+                    <label class="btn--uploudimage" for="uploudimage"><div class="pic--container">
+                        <img class="overview--pic" src="../images/download-1.jpg" alt="">
+                    </div></label>
+                    <div class="flexbox profileinput--container">
+                        <div class="profile--subflex">
+                            <p class="label">Name</p>
+                            <input class="profile--input" type="text">
+                        </div>
+                       
+                    </div>
+                    
+                    
+
+                </div>
+                <form class="profile--form" action="">
+                    <div class="flexbox profileinput--container">
+                        <div class="profile--subflex">
+                            <p class="label">E-mail</p>
+                            <input class="profile--input" type="text">
+                        </div>
+                        <div class="profile--subflex">
+                            <p class="label">Phone Number</p>
+                            <input class="profile--input" type="text" name="" id="">
+                        </div>
+                    </div>
+                    <div class="profileinput--container">
+                        <p class="label">Address</p>
+                        <input class="profile--input" type="text">
+                    </div>
+                   
+                    <div class="flexbox profileinput--container">
+                        <div class="profile--subflex"> 
+                            <p class="label">Type</p>
+                            <input class="profile--input" type="text">
+                        </div>
+                        <div class="profile--subflex">
+                            <p class="label">Tag</p>
+                            <input class="profile--input" type="text" name="" id="">
+                        </div>
+                    </div>
+                    <div class="flexbox profileinput--container">
+                        <div class="profile--subflex">
+                            <p class="label">Faculty/Department</p>
+                            <input class="profile--input" type="text">
+                        </div>
+                        <div class="profile--subflex">
+                            <p class="label">Subject</p>
+                            <input class="profile--input" type="text" name="" id="">
+                        </div>
+                    </div>
+                    <div class="profileinput--container">
+                        <p class="label">Comments</p>
+                        <textarea class="profile--input comment--input"></textarea>
+                    </div>
+                    <div class="profilesubmit--container">
+                        <input class="btn--solid btn--savechanges" type="button" value="Save Changes">
+                    </div>
+                    
+                </form>
+            </div>
+            
+
+        </div>
+
+       
+           
+        
+            
+        
+
+    </div>
+    
+
+   
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>registration</title>
+    <link rel="stylesheet" href="../Css/overall.css">
+    <link rel="stylesheet" href="../Css/registration.css">
+    <script src="../Javascript/pswValidation.js"></script>
+    <script src="../Javascript/emailValidation.js"></script>
+    <!-- <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"> -->
+
+</head>
+<body >
+    <div class="flexbox registercontainer">
+        <div class = 'registercontainer--left'>
+            <div class="registext--container">
+                <p class="font--registitle">
+                    Create your Account & Get started!
+                </p>
+                <p class="font--regispara">
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eir
+                </p>
+                <button class="btn--line btn--backToHome" >
+                    <a href="./homepage.html"><< Back to homepage</a>
+                    
+                </button>
+            </div>
+    
+        </div>
+        
+        <div class="registercontainer--right">
+            <form class="registrationform", action="/user/register", method="POST">
+                <div class="flexbox regissubflex">
+                    <div>
+                        <input class="login--input regis--halfinput" required="required" lable="first_name" type="first_name" value="" name="first_name" placeholder="First Name*" pattern="[A-Za-z]{1,32}" title="Must contain only letters">
+                    </div>
+                    <div>
+                        <input class="login--input regis--halfinput" required="required" lable="last_name" type="last_name" value="" name="last_name" placeholder="Last Name*" pattern="[A-Za-z]{1,32}" title="Must contain only letters">
+                    </div>
+                </div>
+            
+                <input class="login--input" autocomplete="off" required="required" lable="email_address" type="email_address" value="" name="email_address" placeholder="Email*" oninput="ValidateEmail(this)">
+                <input class="login--input" type="phone_number" lable="phone_number" value="" name="phone_number" placeholder="Phone(Optional)" pattern="\d{10}" title="Must contain only digits and length equal to 10">
+                <div class="phone-number">Example: x-xxx-xxx-xxx</div>
+                <!-- <input class="login--input" type="" value="" id="" placeholder="Role (Optional)"> -->
+                <input class="login--input" autocomplete="off" required="required" lable="password" value="" type="password" id="psw1" name="password" placeholder="Password*" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+                <input class="login--input" autocomplete="off" required="required" lable="re_password" value="" type="password" id="psw2" name="re_password" placeholder="Confirm your password*" oninput="check(this)">
+    
+                <div class="flexbox regisbtn--container">
+                    <input class="btn--line regisButton" type = "submit" name = "GET STARTED" value = "GET STARTED >>">
+                    <!-- <input class="btn--line regisButton">GET STARTED</button> -->
+                    <!-- <button class="btn--line regisButton">GET STARTED <i class="fas fa-arrow-right"></i></button> -->
+                </div>
+            </form>
+    
+        </div>
+
+    </div>
+    
+
+</body>
+</html>

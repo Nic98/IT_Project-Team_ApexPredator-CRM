@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview</title>
+    <link rel="stylesheet" href="../Css/overall.css">
+    <link rel="stylesheet" href="../Css/overview.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../Css/calendar.css">
+    <link rel="stylesheet" href="../Css/contact.css">
+    <link rel="stylesheet" href="../Css/profile.css">
+	
+    <script src="https://kit.fontawesome.com/1ee5d6d5b7.js" crossorigin="anonymous"></script>
+    <script src="../Javascript/bootstrap.min.js"></script>
+    <script src="../Javascript/jquery.min.js"></script>
+    <script src="../Javascript/main.js"></script>
+    <script src="../Javascript/popper.js"></script>
+    <script src="../Javascript/loginModal.js"></script>
+    <script src="../Javascript/sidebar.js"></script>
+
+    <script src="../Components/header.js"></script>
+    <script src="../Components/sidebar.js" type="text/javascript" defer></script>
+    <script src="../Javascript/contact.js" type="text/javascript"></script>
+
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $("button").click(function(){
+            $.get("https://api.coinmarketcap.com/v2/ticker/1312/",                      
+        function(json, status){
+
+                var data = json.data;
+
+                $("#container").append(data.name+"<br>");
+
+            });
+        });
+    });
+    </script> -->
+</head>
+
+
+<body class="flexbox workspace--flex">
+   
+    <!-- <sidebar-component></sidebar-component> -->
+    <div class = "workspace--flexchild2  sidebar ">
+        <div class = "logo_content">
+            <div class = "logo">               
+                <div class = "logo_name"> ApexPredator </div>
+                <i class="fas fa-bars" id="btn" onclick="expandSideBar()"></i>
+            </div>
+        </div>
+
+        <ul class="nav_list">
+            <li>
+                <a href="overview.html">
+                    <i class="fas fa-home"></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+                <span class = "tooltip">Dashboard</span>
+            </li>
+
+            <li>
+                <a href="Contact.html">
+                    <i class="fas fa-user-friends"></i>
+                    <span class="links_name">Contacts</span>
+                </a>
+                <span class = "tooltip">Contacts</span>
+            </li>
+
+            <li>
+                <a href="task.html">
+                    <i class="fas fa-tasks"></i>
+                    <span class="links_name">Tasks</span>
+                </a>
+                <span class = "tooltip">Tasks</span>
+            </li>
+
+            <li>
+                <a href="profile.html">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="links_name">Profile</span>
+                </a>
+                <span class = "tooltip">Profile</span>
+            </li>             
+        </ul> 
+    </div>
+    
+    
+
+    <div class="workspace--flexchild2 home_content" >
+        <header-component></header-component>
+        <div id="contactpage" class="detailContainer">
+
+        </div>
+      
+        
+
+        
+
+        <div class="content-container" >
+            
+            <p class="font--overview">Contact</p>
+
+            <div class="contact--container" >
+                <div class="flexbox contact--functionalContainer">
+
+                    <button onclick="addContact()" class="btn--square btn--addContact " >
+                        Add a contact 
+                        <!-- <i class="fas fa-plus hide_in_mobile"></i> -->
+                    </button>
+
+                    <div class="dropdown--container">
+                        <button class="btn--square btn--sort btn--dropdown">
+                            Sort 
+                            <!-- <i class="fas fa-sort-amount-down"></i> -->
+                        </button>
+                        <form class="flexbox dropdown--content" action='/contact/changeSortMode' method='POST'>
+                            <button type = "submit" name = "priority" value="priority">By Priority</button>
+                            <button type = "submit" name = "priority" value="time">By Time</button>
+                        </form>
+
+                    </div>
+
+                    
+
+                </div>
+
+                <hr>
+
+                <div id="addcontact" class="contact--contentContainer">
+                    <div class="flexbox contact--header">
+                        <div class="text--center font--contactHeader"> 
+                            <p>
+                                Name
+                            </p>
+                        </div>
+                        
+                        <div class="text--center font--contactHeader hide_in_mobile"> 
+                            <p>
+                                Email
+                            </p>
+                        </div>
+                        <div class="text--center font--contactHeader hide_in_mobile"> 
+                            <p>
+                                Phone Number
+                            </p>
+                        </div>
+                      
+                        <div class="text--center font--contactHeader"> 
+                            <p>
+                                Priority
+                            </p>
+                        </div>
+
+                        <div class="text--center font--contactHeader"> 
+                            <p>
+                                Actions
+                            </p>
+                        </div>
+
+                    </div>
+                    <div>
+                        <div id="new flexbox contact--card"></div>
+                    </div>
+                    
+
+                </div>
+
+            </div>
+
+        </div>
+
+       
+    </div>
+
+    
+    <script>
+
+        function deleteContact(contact_id){
+            
+            fetch('/contact/deleteContact' + '/' + contact_id, {
+                method: 'DELETE',
+            })
+            .then(res => res.json())
+            .then(res => console.log(res))
+            
+        }
+
+        fetch('/contact/allContacts')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (data) {
+                appendData(data);
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+        
+        function editContact(){
+            var editcontact = this.parentElement.parentElement;
+            
+
+
+            editcontact.style.display = "none";
+            
+        
+            var contact_form = document.createElement("form");
+            contact_form.className = "flexbox contact--card addcontact--card";
+            contact_form.id = "newContact--form";
+
+            contact_form.method = "POST";
+            contact_form.action = "/contact/editContact";
+            
+            // contact_form.style.background = "red";
+            editcontact.parentElement.appendChild(contact_form);
+            
+            // editContact.parentElement.replaceChild(contact_form, editcontact);
+       
+            //edit name
+            var editname = this.parentElement.parentElement.querySelector("#div_name");
+            var name_input = document.createElement("input");
+            name_input.name = "name";
+
+            name_input.className = "text--center";
+            name_input.defaultValue = editname.innerHTML;
+            // this.parentElement.parentElement.replaceChild(name_input, editname);
+            contact_form.appendChild(name_input);
+            // var div = document.createElement('form');
+
+
+            //edit email
+            var email_input = document.createElement("input");
+            var editemail = this.parentElement.parentElement.querySelector("#div_email");
+            email_input.name = "email_address";
+            email_input.className = "text--center";
+            email_input.defaultValue = editemail.innerHTML;
+            contact_form.appendChild(email_input);
+
+            //edit phone number
+            var editpn = this.parentElement.parentElement.querySelector("#div_pn");
+            var pn_input = document.createElement("input");
+            pn_input.name = "phone_number";
+            pn_input.className = "text--center";
+            pn_input.defaultValue = editpn.innerHTML;
+            //this.parentElement.parentElement.replaceChild(pn_input, editpn);
+            contact_form.appendChild(pn_input);
+
+
+            var id = document.createElement("input");
+            email_input.name = "email_address";
+            
+
+            //edit description
+            var editdescription = this.parentElement.parentElement.querySelector("#div_priority");
+            var description_input = document.createElement("select");
+            description_input.name = "priority";
+            var p1 = document.createElement("option");
+            p1.value = "1";
+            p1.innerHTML = "1";
+            p1.className = "text--center";
+
+            var p2 = document.createElement("option");
+            p2.value = "2";
+            p2.innerHTML = "2";
+            p2.className = "text--center";
+
+            var p3 = document.createElement("option");
+            p3.value = "3";
+            p3.innerHTML = "3";
+            p3.className = "text--center";
+            // p1.className = "text--center";
+            description_input.appendChild(p1);
+            description_input.appendChild(p2);
+            description_input.appendChild(p3);
+         
+            description_input.className = "width20";
+            description_input.defaultValue = editdescription.innerHTML;
+            this.parentElement.parentElement.replaceChild(description_input, editdescription);
+            contact_form.appendChild(description_input);
+
+            // The id to give back-end
+            var id = this.parentElement.parentElement.querySelector("#div_id");
+            var id_input = document.createElement("input");
+            id_input.name = "_id";
+
+            contact_id = editcontact.parentElement.id;
+            id_input.defaultValue = contact_id;
+            id_input.type="hidden";
+            contact_form.appendChild(id_input);
+
+            //action buttons
+            var action = document.createElement("div");
+            action.className = "text--center action--container";
+
+            //submit btn
+            var submit = document.createElement("button");
+            submit.type = "submit";
+            submit.className = "btn--noborder";
+            var editicon = document.createElement("i");
+            editicon.className = "fas fa-check";
+            submit.appendChild(editicon);
+            action.appendChild(submit);
+            contact_form.appendChild(action);
+
+  
+        }
+        function appendData(data) {
+            var flexboxContact = document.getElementById("new flexbox contact--card");
+            
+            for (var i = 0; i < data.length; i++) {
+                var div_contact = document.createElement("div")
+                div_contact.id = data[i]._id;
+
+                var div_name = document.createElement("div");
+                div_name.className = "text--center";
+                div_name.id = "div_name";
+
+                var div_status = document.createElement("div");
+                div_status.className = "text--center hide_in_mobile";
+
+                var div_company = document.createElement("div");
+                div_company.className = "text--center hide_in_mobile";
+
+                var div_email = document.createElement("div");
+                div_email.className = "text--center hide_in_mobile";
+                div_email.id = "div_email";
+
+                var div_priority = document.createElement("div");
+                div_priority.className = "text--center ";
+                div_priority.id = "div_priority";
+
+                var div_pn = document.createElement("div");
+                div_pn.className = "text--center hide_in_mobile";
+                div_pn.id = "div_pn";
+                
+                var div_button = document.createElement("div");
+                div_button.className = "text--center action--container";
+
+                var button_1 = document.createElement("BUTTON");
+                button_1.className = "btn--noborder hide_in_mobile";
+                button_1.onclick = editContact;
+
+                var button_2 = document.createElement("BUTTON");
+                button_2.className = "btn--noborder";
+                
+
+                var button_3 = document.createElement("BUTTON");
+                button_3.type = "submit";
+
+                button_3.className = "btn--noborder";
+                button_3.id = data[i]._id;
+                button_3.setAttribute( "onClick", "javascript: deleteContact(this.id);this.parentElement.parentElement.remove();");     
+
+                var image_1 = document.createElement("i");
+                image_1.className = "fas fa-edit";
+
+                var image_2 = document.createElement("i");
+                image_2.className = "fas fa-address-book";
+
+                var image_3 = document.createElement("i");
+                image_3.className = "fas fa-trash";
+                
+                button_1.appendChild(image_1);
+                button_2.appendChild(image_2);
+                button_3.appendChild(image_3);
+                
+                
+                div_button.appendChild(button_1);
+                div_button.appendChild(button_2);
+                div_button.appendChild(button_3);
+            
+
+                var div_flexbox = document.createElement("div");
+                div_flexbox.className = "flexbox contact--card";
+
+                div_name.innerHTML = data[i].name;
+                div_status.innerHTML = data[i].status;
+
+                div_email.innerHTML = data[i].email_address;
+
+                // div_company.innerHTML = data[i].company;
+                div_priority.innerHTML = data[i].priority;
+                div_pn.innerHTML = data[i].phone_number;
+            
+
+                
+
+                div_flexbox.appendChild(div_name);
+                div_flexbox.appendChild(div_email);
+                div_flexbox.appendChild(div_pn);
+                div_flexbox.appendChild(div_priority);
+
+                div_flexbox.appendChild(div_button);
+                div_contact.appendChild(div_flexbox);
+
+                flexboxContact.appendChild(div_contact);
+                var detailContainer = document.createElement("div");
+                detailContainer.className = "detail--modal";
+                detailContainer.id = "detail" + div_contact.id;
+                
+                // detail modal
+                document.getElementById("contactpage").appendChild(detailContainer);
+
+                // contact detail text
+                var detail_title = document.createElement("p");
+                detail_title.innerHTML = "Contact Details";
+                detail_title.className = "font--overview";
+                detailContainer.appendChild(detail_title);
+
+
+                // detail content container, form is here!!
+                var detail_content = document.createElement("form");
+                detail_content.method = "POST";
+                detail_content.action = '/contact/editContact';
+                detail_content.className = "contactdetail--content";
+                detailContainer.appendChild(detail_content);
+
+                
+                // name and priority row
+                var name_p_Container = document.createElement("div");
+                name_p_Container.className = "flexbox profileinput--container";
+                detail_content.appendChild(name_p_Container);
+
+                // create name's container
+                var name_div = document.createElement("div");
+                name_div.className = "profile--subflex";
+                name_p_Container.appendChild(name_div);
+
+                var name_text = document.createElement("p");// name label
+                name_text.innerHTML = "Name";
+                name_text.className = "label";
+                name_div.appendChild(name_text);
+
+                var name_input = document.createElement("input");// name input!!!!!!!!
+                name_input.className = "profile--input";
+                name_input.defaultValue = data[i].name;
+                name_input.name = "name";
+                name_div.appendChild(name_input);
+
+                // create priority's container
+                var priority_div = document.createElement("div");
+                priority_div.className = "profile--subflex";
+                name_p_Container.appendChild(priority_div);
+
+                var priority_text = document.createElement("p");// priority label
+                priority_text.innerHTML = "Priority";
+                priority_text.className = "label";
+                priority_div.appendChild(priority_text);
+
+                var priority_input = document.createElement("select");// priority input!!!!!!!
+                priority_input.className = "profile--input";
+                priority_input.defaultValue = data[i].priority;
+                priority_input.name ="priority";
+                priority_div.appendChild(priority_input);
+
+                var p1 = document.createElement("option");
+                p1.value = "1";
+                p1.innerHTML = "1";
+                // p1.className = "text--center";
+                priority_input.appendChild(p1);
+
+                var p2 = document.createElement("option");
+                p2.value = "2";
+                p2.innerHTML = "2";
+                // p2.className = "text--center";
+                priority_input.appendChild(p2);
+
+                var p3 = document.createElement("option");
+                p3.value = "3";
+                p3.innerHTML = "3";
+                // p3.className = "text--center";
+                priority_input.appendChild(p3);
+
+                
+
+                // contact number row
+                var cn_Container = document.createElement("div");
+                cn_Container.className = "profileinput--container";
+                detail_content.appendChild(cn_Container);
+
+                var cn_text = document.createElement("p");// phone number label
+                cn_text.innerHTML = "Phone Number";
+                cn_text.className = "label";
+                cn_Container.appendChild(cn_text);
+
+                var cn_input = document.createElement("input");// phone number input!!!!!!!!!
+                cn_input.className = "profile--input";
+                cn_input.defaultValue = data[i].phone_number;
+                cn_input.name = "phone_number";
+                cn_Container.appendChild(cn_input);
+
+                // email address
+                var email_Container = document.createElement("div");
+                email_Container.className = "profileinput--container";
+                detail_content.appendChild(email_Container);
+
+                var email_text = document.createElement("p");// email label
+                email_text.innerHTML = "Email";
+                email_text.className = "label";
+                email_Container.appendChild(email_text);
+
+                var email_input = document.createElement("input");// email input!!!!!!!!!
+                email_input.className = "profile--input";
+                email_input.defaultValue = data[i].email_address;
+                email_input.name = "email_address";
+                email_Container.appendChild(email_input);
+
+                // address
+                var address_Container = document.createElement("div");
+                address_Container.className = "profileinput--container";
+                detail_content.appendChild(address_Container);
+
+                var address_text = document.createElement("p");// address label
+                address_text.innerHTML = "Address";
+                address_text.className = "label";
+                address_Container.appendChild(address_text);
+
+                var address_input = document.createElement("input");// address input!!!!!!!!!
+                address_input.className = "profile--input";
+                address_input.defaultValue = data[i].address;
+                address_input.name = "address";
+                address_Container.appendChild(address_input);
+
+                // description
+                var description_Container = document.createElement("div");
+                description_Container.className = "profileinput--container";
+                detail_content.appendChild(description_Container);
+
+                var description_text = document.createElement("p");// description label
+                description_text.innerHTML = "Description";
+                description_text.className = "label";
+                description_Container.appendChild(description_text);
+
+                var description_input = document.createElement("input");// description input!!!!!!!!!!
+                description_input.className = "profile--input";
+                description_input.defaultValue = data[i].description;
+                description_input.name = "description";
+                description_Container.appendChild(description_input);
+
+                // contact_id
+                var id_input = document.createElement("input");// name input
+                id_input.defaultValue = data[i]._id;
+                id_input.name = "_id";
+                id_input.type = "hidden";
+                detail_content.appendChild(id_input);
+
+                // button container
+                var btn_container = document.createElement("div")
+                btn_container.className = "profiledetailsubmit--container";
+                detail_content.appendChild(btn_container);
+
+                // cancel button
+                var btn_cancel = document.createElement("button");
+                btn_cancel.onclick = closedetail;
+                btn_cancel.className = "btn--solid btn--savechanges";
+                btn_cancel.id= "btn--cancel";
+                btn_cancel.innerHTML = "Cancel";
+                btn_container.appendChild(btn_cancel);
+
+                
+                // edit button
+                var btn_save = document.createElement("button");
+                btn_save.type = "submit";
+                btn_save.className = "btn--solid btn--savechanges";
+                btn_save.innerHTML = "Save Changes";
+                btn_container.appendChild(btn_save);
+
+
+                button_2.id = div_contact.id;
+                button_2.onclick = showdetail;
+              
+
+                
+                
+            }
+
+            
+        }
+        function showdetail(){
+            // id = String(id);
+            var id = "detail" + this.id ;
+            var contactpage = document.getElementById("contactpage");
+            contactpage.style.display = "block";
+            document.getElementById(id).style.display = "block";
+
+                
+        }
+
+        function closedetail(){
+            document.getElementById("contactpage").style.display = "none";
+        }
+
+
+    </script>
+    <script src="../Javascript/switchmode.js"></script>
+
+</body>
+</html>

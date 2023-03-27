@@ -1,0 +1,268 @@
+:root{
+    --darkgreen: #253439;
+    --blue: #4787B4;
+}
+
+.homeHeader{
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding-right: 40px;
+    height: 28px;
+    margin: 6px;
+}
+
+hr{
+    border: solid;
+    border-width: 1px;
+    height: 100%;
+    width: 0px;
+}
+
+.vl{
+    margin-left: 4px;
+    margin-right: 4px;
+}
+
+
+.homeHeader>*>*{
+    font-size: 18px;
+    color: var(--darkgreen);
+    text-decoration: none;
+    margin-left: 6px;
+  
+}
+
+.homePic--container{
+    max-height: 90%;
+    width: 100%;
+    overflow: hidden;
+    height:fit-content;
+    background: url(../images/homepage.png);
+   
+}
+
+.home--subcontainer{
+   width: 100%;
+
+   margin-top: 80px;
+   text-align: center;
+   margin-bottom: 80px;
+   flex-direction: column;
+   flex-wrap: wrap;
+}
+
+.home--subcontainer>*{
+    color: white;
+}
+
+.font--welcome{
+    font-family: "Helvetica Neueu";
+    font-size: 48px;
+    margin: 10px;
+    letter-spacing: 2px;
+    font-weight: lighter;
+}
+
+.font--apex{
+    font-family: "Helvetica Neueu";
+    font-size: 58px;
+    margin: 10px;
+    letter-spacing: 4px;
+    font-weight:normal;
+    margin-bottom: 48px;
+}
+
+.paragraph--container{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.font--paragraph{
+    font-family: "Helvetica Neueu";
+    font-weight: lighter;
+    letter-spacing: 1px;
+    line-height: 1.8;
+    
+   
+}
+
+.home--buttoncontainer{
+    margin-top: 80px;
+    width: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+    justify-content:center;
+
+}
+
+.home--buttoncontainer>*{
+    margin: 16px;
+}
+
+
+.btn--getstarted{
+    border-color: white;
+    color: white;
+    background: var(--blue);
+}
+
+.btn--getstarted:hover{
+    background: #299DEF;
+    transition-duration: 0.5s;
+}
+
+.homeintro--container{
+    justify-content: space-between;
+    margin-left: 8%;
+    margin-right: 8%;
+    margin-top: 100px;
+}
+
+.homeintro--leftsub{
+    width: 50%;
+}
+
+.homeintro--rightsub{
+    width: 40%;
+}
+
+.modesshow--img{
+    width: 100%;
+}
+
+.homeintro--child{
+    margin-bottom: 48px;
+}
+
+
+.featuretitle--container{
+    text-align: center;
+    margin-top: 120px;
+    margin-bottom: 80px;
+    font-size: 40px;
+    font-weight: bold;
+}
+
+
+.features--container{
+    justify-content: space-between;
+    padding-right: 8%;
+    padding-left: 8%;
+    margin-bottom: 18px;
+}
+
+.features--container>*{
+    width: 33%;
+}
+
+.features--container>*>*{
+   
+    text-align: center;
+}
+
+.featuretext--sub{
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.homefooter{
+    background: lightgray;
+    height: 40px;
+    margin-top: 100px;
+    text-align: center;
+    padding-top: 20px;
+    color: var(--darkgreen);
+}
+
+
+
+
+.login--btn{
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+#login--modal{
+    display: none;
+    position:fixed;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+
+}
+
+.login-container{
+    width: 40%;
+    position: relative;
+    left: auto;
+    right: auto;
+    top: 20px;
+    max-width: 400px;
+    margin-top: 60px;
+    border-radius: 10px;
+    margin: auto;
+    padding: 4%;
+    background-color: white;
+    height: fit-content;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+    overflow: hidden;
+   
+}
+
+@keyframes animatetop {
+    from{top: -300px; opacity: 0;}
+    to {top: 20px; opacity: 1;}    
+}
+
+.loginmodal--btncontainer{
+    margin-top: 36px;
+    justify-content: space-between;
+}
+
+#logincancel--btn{
+    color: var(--darkgreen);
+    width: 40%;
+    font-size: 14px;
+    padding: 8px;
+}
+
+#loginbtn{
+    background-color: var(--darkgreen);
+    color: white;
+    width: 40%;
+    font-size: 14px;
+    padding: 8px;
+}
+
+.font--LoginTitle{
+    font-size: 30px;
+    color: var(--darkgreen);
+    font-weight: bold;
+    margin: 0;
+}
+
+.font--loginwelcome{
+    font-size: 22px;
+    margin: 0;
+    margin-top: 8px;
+    margin-bottom: 28px;
+}
+
+.signuphint--container{
+    margin-top: 20px;
+}
+
+.signuphint--container>*{
+    color: var(--darkgreen);
+}
+
+.signuphint--container>*>*{
+    color: #9B1720;
+}

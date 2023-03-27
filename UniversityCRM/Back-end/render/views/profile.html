@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview</title>
+    <link rel="stylesheet" href="../Css/overall.css">
+    <link rel="stylesheet" href="../Css/overview.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../Css/calendar.css">
+    <link rel="stylesheet" href="../Css/profile.css">
+	
+    <script src="../Javascript/pswValidation.js"></script>
+    <script src="../Javascript/emailValidation.js"></script>
+    <script src="https://kit.fontawesome.com/1ee5d6d5b7.js" crossorigin="anonymous"></script>
+    <script src="../Javascript/bootstrap.min.js"></script>
+    <script src="../Javascript/jquery.min.js"></script>
+    <script src="../Javascript/main.js"></script>
+    <script src="../Javascript/popper.js"></script>
+    <script src="../Javascript/loginModal.js"></script>
+    <script src="../Javascript/sidebar.js"></script>
+    <script src="../Components/header.js"></script>
+    <script src="../Components/sidebar.js" type="text/javascript" defer></script>
+    <script src="../Javascript/switchmode.js"></script>
+
+</head>
+
+<body class="flexbox workspace--flex">
+   
+    <!-- <sidebar-component></sidebar-component> -->
+    <div class = "workspace--flexchild2  sidebar ">
+        <div class = "logo_content">
+            <div class = "logo">               
+                <div class = "logo_name"> ApexPredator </div>
+                <i class="fas fa-bars" id="btn" onclick="expandSideBar()"></i>
+            </div>
+        </div>
+
+        <ul class="nav_list">
+            <li>
+                <a href="overview.html">
+                    <i class="fas fa-home"></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+                <span class = "tooltip">Dashboard</span>
+            </li>
+
+            <li>
+                <a href="Contact.html">
+                    <i class="fas fa-user-friends"></i>
+                    <span class="links_name">Contacts</span>
+                </a>
+                <span class = "tooltip">Contacts</span>
+            </li>
+
+            <li>
+                <a href="task.html">
+                    <i class="fas fa-tasks"></i>
+                    <span class="links_name">Tasks</span>
+                </a>
+                <span class = "tooltip">Tasks</span>
+            </li>
+
+            <li>
+                <a href="profile.html">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="links_name">Profile</span>
+                </a>
+                <span class = "tooltip">Profile</span>
+            </li>             
+        </ul> 
+    </div>
+    
+    
+
+    <div class="workspace--flexchild2 home_content">
+        <header-component></header-component>
+      
+            
+
+        
+
+        <div class="content-container">
+            
+            <p class="font--overview">Profile</p>
+            <div class="profile--container">
+                <div class="profilepic--container">
+                    <input type="file" name="" id="uploudimage" hidden/>
+                    <label class="btn--uploudimage" for="uploudimage"><div class="pic--container">
+                        <img class="overview--pic" src="../images/download-1.jpg" alt="">
+                    </div></label>
+                </div>
+
+
+                <form class="profile--form" id="profile" method="POST" action="/profile/editProfile">
+
+                    <div class="flexbox profileinput--container">
+                        <div class="profile--subflex">
+                            <p class="label">First Name</p>
+                            <input class="profile--input" type="text" name="first_name" id="fn">
+                        </div>
+                        <div class="profile--subflex">
+                            <p class="label">Last Name</p>
+                            <input class="profile--input" type="text" name="last_name" id="ln">
+                        </div>
+                    </div>
+
+                    <div class="profileinput--container">
+                        <p class="label">Phone Number</p>
+                        <input class="profile--input" type="text" name="phone_number" id="pn" pattern = "\d{10}";>
+                    </div>
+
+                    <div class="profileinput--container">
+                        <p class="label">Address</p>
+                        <input class="profile--input" type="text" name="address" id="add">
+                    </div>
+
+                    <div class="profileinput--container">
+                        <p class="label">Email Address</p>
+                        <input class="profile--input" type="text" name="email_address" id="em" oninput="ValidateEmail(this)">
+                    </div>
+
+                    <div class="profilesubmit--container">
+                        <input class="btn--solid btn--savechanges" type="submit" value="Save Changes">
+                    </div>
+                    
+                </form>
+
+            </div>
+
+            <p class="font--overview">Edit Password</p>
+
+            <div class="profile--container">
+                
+                <form class="profile--form" id="password" method="POST" action="/user/changePassword">
+
+                    <div class="profileinput--container">
+                        <p class="label">Old Password</p>
+                        <input class="profile--input" name="password" type="password" placeholder="Input your old password">
+                    </div>
+
+                    <div class="profileinput--container">
+                        <p class="label">New Password</p>
+                        <input class="profile--input" type="password" id="psw1" placeholder="Input your new password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+                    </div>
+
+                    <div class="profileinput--container">
+                        <p class="label">Confirm your new password</p>
+                        <input class="profile--input" type="password" name="newPassword" id="psw2" placeholder="Input your new password again" oninput="check(this)">
+                    </div>
+
+                    <div class="profilesubmit--container">
+                        <input class="btn--solid btn--savechanges" type="submit" value="Confirm">
+                    </div>
+                    
+                </form>
+
+            </div>
+            
+
+        </div>
+
+    </div>
+
+    <script>
+
+        // fetch('/mode/getMode')
+        //     .then(function (response) {
+        //         return response.json();
+        //     })
+        //     .then(function (mode) {
+        //         rendorCurrentMode(mode);
+        //     })
+        //     .catch(function (err) {
+        //         console.log('error: ' + err);
+        //     });
+
+        fetch('/profile/getProfile')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (details) {
+                appendData(details);
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+        
+        // function rendorCurrentMode(mode){
+        //     if(mode == "light"){
+        //         //switch background
+        //         var element = document.body;
+        //         element.classList.toggle("darkmode");
+        //     }
+        // }
+
+        function appendData(details) {
+            var profile = document.getElementById("profile");
+
+            var fn = document.getElementById("fn");
+            fn.defaultValue = details.first_name;
+            fn.title = "Must contain only letters";
+            fn.pattern = "[A-Za-z]{1,32}";
+            
+
+            var ln = document.getElementById("ln");
+            ln.defaultValue = details.last_name;
+            ln.title = "Must contain only letters";
+            ln.pattern = "[A-Za-z]{1,32}";
+            
+
+            var pn = document.getElementById("pn");
+            pn.defaultValue = details.phone_number;
+            pn.title = "Must contain only digits and length equal to 10"
+
+            var add = document.getElementById("add");
+            add.defaultValue = details.address;
+            
+            var em = document.getElementById("em");
+            em.defaultValue = details.email_address;
+
+        }
+
+        
+
+
+        
+    </script>
+
+</body>
+</html>

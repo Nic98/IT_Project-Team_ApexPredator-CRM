@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview</title>
+    <link rel="stylesheet" href="../Css/overall.css">
+    <link rel="stylesheet" href="../Css/overview.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../Css/calendar.css">
+    <link rel="stylesheet" href="../Css/contact.css">
+    <link rel="stylesheet" href="../Css/task.css">
+	
+    <script src="https://kit.fontawesome.com/1ee5d6d5b7.js" crossorigin="anonymous"></script>
+    <script src="../Javascript/bootstrap.min.js"></script>
+    <script src="../Javascript/jquery.min.js"></script>
+    <script src="../Javascript/main.js"></script>
+    <script src="../Javascript/popper.js"></script>
+    <script src="../Javascript/loginModal.js"></script>
+    <script src="../Javascript/sidebar.js"></script>
+    
+    <script src="../Components/header.js"></script>
+    <script src="../Javascript/task.js"></script>
+    <script src="../Components/sidebar.js" type="text/javascript" defer></script>
+    
+
+</head>
+
+<body class="flexbox workspace--flex">
+   
+    <!-- <sidebar-component></sidebar-component> -->
+    <div class = "workspace--flexchild2  sidebar ">
+        <div class = "logo_content">
+            <div class = "logo">               
+                <div class = "logo_name"> ApexPredator </div>
+                <i class="fas fa-bars" id="btn" onclick="expandSideBar()"></i>
+            </div>
+        </div>
+
+        <ul class="nav_list">
+            <li>
+                <a href="overview.html">
+                    <i class="fas fa-home"></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+                <span class = "tooltip">Dashboard</span>
+            </li>
+
+            <li>
+                <a href="Contact.html">
+                    <i class="fas fa-user-friends"></i>
+                    <span class="links_name">Contacts</span>
+                </a>
+                <span class = "tooltip">Contacts</span>
+            </li>
+
+            <li>
+                <a href="task.html">
+                    <i class="fas fa-tasks"></i>
+                    <span class="links_name">Tasks</span>
+                </a>
+                <span class = "tooltip">Tasks</span>
+            </li>
+
+            <li>
+                <a href="profile.html">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="links_name">Profile</span>
+                </a>
+                <span class = "tooltip">Profile</span>
+            </li>             
+        </ul> 
+    </div>
+    
+    
+
+    <div class="workspace--flexchild2 home_content">
+        <header-component></header-component>
+      
+        <div class="content-container">
+
+            <p class="font--overview">Tasks</p>
+            
+            <!-- DONT DELETE!!! -->
+            <!-- add a project -->
+                        
+            <form class="flexbox task--functionalContainer" method="POST" action="/task/addCategory">
+                <button onclick="addProject()" id="addproject" class="btn--square btn--addContact" type="sbutmit">
+                    <input name="name" type="hidden" value="Default Project Name">
+                    <input name="category_code" type="hidden" value="00000">
+                    Add a project <i class="fas fa-plus"></i>
+                </button>
+            </form>
+
+            <!-- <div class="flexbox task--functionalContainer">
+                <button onclick="addProject()" id="addproject" class="btn--square btn--addContact" type="submit">
+                    Add a project <i class="fas fa-plus"></i>
+                </button>
+            </div> -->
+
+            <hr>
+            
+            <div id="project--container"></div>
+
+            
+
+        </div>
+
+    </div>
+    
+    <script>
+        function deleteTask(task_id){
+            fetch('/task/deleteTask' + '/' + task_id, {
+                method: 'DELETE',
+            })
+            .then(res => res.json())
+            .then(res => console.log(res))
+        }
+        function deleteProject(project_id){
+            fetch('/task/categorys' + '/' + project_id, {
+                method: 'DELETE',
+            })
+            .then(res => res.json())
+            .then(res => console.log(res))
+            
+        }
+
+        fetch('/task/category/all')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (project) {
+                appendProject(project);
+                return fetch('/task/all')
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (data) {
+                        appendData(data);
+                    })
+                    .catch(function (err) {
+                        console.log('error: ' + err);
+                    });
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+
+                
+            
+        // fetch('/task/category/all')
+        // .then(function (response) {
+        //     return response.json();
+        // })
+        // .then(function (project) {
+        //     appendProject(project);
+        // })
+        // .catch(function (err) {
+        //     console.log('error: ' + err);
+        // });
+            
+        // fetch('/task/all')
+        //     .then(function (response) {
+        //         return response.json();
+        //     })
+        //     .then(function (data) {
+        //         appendData(data);
+        //     })
+        //     .catch(function (err) {
+        //         console.log('error: ' + err);
+        //     });
+
+        function removeProject(){
+            this.parentElement.parentElement.parentElement.remove();
+        }
+
+        function removeTask(){
+            this.parentElement.parentElement.remove();
+        }
+
+        function addTask(){
+            var taskcard = document.createElement("form");
+            taskcard.className = "flexbox task--taskcard addtask";
+            taskcard.method = "POST";
+            taskcard.action = "/task/"
+            this.parentElement.parentElement.parentElement.appendChild(taskcard);
+
+
+            //name
+            var task_name = document.createElement("input");
+            task_name.className = "task--headerchild20";
+            task_name.placeholder = "name";
+            task_name.name = "name"
+            taskcard.appendChild(task_name);
+
+            //type
+            var task_type = document.createElement("input");
+            task_type.className = "task--headerchild20";
+            task_type.placeholder = "type";
+            task_type.name = "type";
+            taskcard.appendChild(task_type);
+
+            //status
+            var task_status = document.createElement("input");
+            task_status.className = "task--headerchild20 hide_in_mobile";
+            task_status.placeholder = "status";
+            task_status.name = "status";
+            taskcard.appendChild(task_status);
+
+            //description
+            var task_description = document.createElement("input");
+            task_description.className = "task--headerchild30 hide_in_mobile";
+            task_description.placeholder = "description";
+            task_description.name = "description";
+            taskcard.appendChild(task_description);
+
+            //belongsTo
+            var task_belongsTo = document.createElement("input");
+            task_belongsTo.type = "hidden";
+            task_belongsTo.name = "belongsTo";
+            task_belongsTo.value = this.parentElement.parentElement.parentElement.id;
+            taskcard.appendChild(task_belongsTo);
+
+            //action
+            var task_name = document.createElement("div");
+            task_name.className = "task--headerchild10";
+
+            //submit button
+            var task_save = document.createElement("button");
+            task_save.className = "btn--noborder";
+            task_save.type = "submit";
+            var saveicon = document.createElement("i");
+            saveicon.className = "fas fa-check";
+            task_save.appendChild(saveicon);
+            task_name.appendChild(task_save);
+
+            //remove button
+            var task_remove = document.createElement("button");
+            task_remove.className = "btn--noborder";
+            task_remove.onclick = removeTask;
+            var removeicon = document.createElement("i");
+            removeicon.className = "fas fa-trash";
+            task_remove.appendChild(removeicon);
+            task_name.appendChild(task_remove);
+        
+            taskcard.appendChild(task_name);
+            //inputForm.appendChild(taskcard);
+        }
+
+        function editTask(){
+          
+            var edittask = this.parentElement.parentElement;
+            // edittask.style.background = "red";
+            edittask.style.display = "none";
+
+            var taskcard = document.createElement("form");
+            taskcard.method="POST"
+            taskcard.action="/task/updateTask"
+            taskcard.className = "flexbox task--taskcard addtask";
+            edittask.parentElement.appendChild(taskcard);
+
+            //name
+            var edit_task_name = this.parentElement.parentElement.querySelector("#task_name");
+            var task_name = document.createElement("input");
+            task_name.name = "name";
+            task_name.className = "task--headerchild20";
+            task_name.defaultValue = edit_task_name.innerHTML;
+            taskcard.appendChild(task_name);
+
+            //type
+            var edit_task_type = this.parentElement.parentElement.querySelector("#task_type");
+            var task_type = document.createElement("input");
+            task_type.name = "type";
+            task_type.className = "task--headerchild20";
+            task_type.defaultValue = edit_task_type.innerHTML;
+            taskcard.appendChild(task_type);
+
+            //status
+            var edit_task_status = this.parentElement.parentElement.querySelector("#task_status");
+            var task_status = document.createElement("input");
+            task_status.name = "status";
+            task_status.className = "task--headerchild20 hide_in_mobile";
+            task_status.defaultValue = edit_task_status.innerHTML;
+            taskcard.appendChild(task_status);
+
+            //description
+            var edit_task_description = this.parentElement.parentElement.querySelector("#task_description");
+            var task_description = document.createElement("input");
+            task_description.name = "description";
+            task_description.className = "task--headerchild30 hide_in_mobile";
+            task_description.defaultValue = edit_task_description.innerHTML;
+            taskcard.appendChild(task_description);
+
+            //_id
+            var id_input = document.createElement("input");
+            id_input.name = "_id";
+            task_id = edittask.parentElement.id;
+            id_input.defaultValue = task_id;
+            id_input.type="hidden";
+            taskcard.appendChild(id_input);
+            
+            //action
+            var task_action = document.createElement("div");
+            task_action.className = "task--headerchild10";
+
+            //submit button
+            var task_save = document.createElement("button");
+            task_save.type="submit";
+            task_save.className = "btn--noborder";
+            var saveicon = document.createElement("i");
+            saveicon.className = "fas fa-check";
+            
+            task_save.appendChild(saveicon);
+            task_action.appendChild(task_save);
+
+            //remove button
+            var task_remove = document.createElement("button");
+            task_remove.className = "btn--noborder";
+            task_remove.onclick = removeTask;
+            var removeicon = document.createElement("i");
+            removeicon.className = "fas fa-trash";
+            task_remove.appendChild(removeicon);
+            task_action.appendChild(task_remove);
+        
+            taskcard.appendChild(task_action);
+
+
+        }
+
+
+
+        function appendProject(project) {
+            // console.log(project[0]);
+            for (var i = 0; i < project.length; i++) {
+
+                var projectcard = document.createElement("div");
+                projectcard.className = "task--card";
+                projectcard.id = project[i]._id;
+                document.getElementById("project--container").appendChild(projectcard);
+                
+                //add project title into this card
+                var projecttitle = document.createElement("div");
+                projecttitle.className = "flexbox task--projectTitle";
+
+                // a container(Form) outside the project name input and submit btn
+                var projectnameContainer = document.createElement("form");
+                projectnameContainer.className = "flexbox projectName--container";
+                projectnameContainer.method = "POST";
+                projectnameContainer.action = "/task/category";
+                projecttitle.appendChild(projectnameContainer);
+
+                // give name
+                var projectnametxt = document.createElement("input");
+                projectnametxt.defaultValue = project[i].name;
+                projectnametxt.className = "font--projectName";
+                projectnametxt.name = "name";
+                projectnameContainer.appendChild(projectnametxt);
+                
+
+                // give code
+                var projectcode = document.createElement("input");
+                projectcode.defaultValue = "00000";
+                projectcode.type = "hidden";
+                projectcode.name = "category_code";
+                projectnameContainer.appendChild(projectcode);
+
+                // give id
+                var projectid = document.createElement("input");
+                projectid.defaultValue = project[i]._id;
+                projectid.type = "hidden";
+                projectid.name = "_id";
+                projectnameContainer.appendChild(projectid);
+
+
+                projectcard.appendChild(projecttitle);
+
+                //change project name btn
+                var savebtn = document.createElement("button");
+                savebtn.type = "submit";
+                savebtn.innerHTML = "Save";
+                savebtn.className = "btn--square btn--sort save--btn";
+                projectnameContainer.appendChild(savebtn);
+
+                //container containing two btns
+                var buttoncontainer = document.createElement("div");
+                buttoncontainer.className = "button--container";
+                projecttitle.appendChild(buttoncontainer);
+
+                // buttoncontainer.appendChild(savebtn);
+
+                var remove = document.createElement("button");
+                remove.className = "btn--square btn--sort";
+                remove.type = "submit";
+                remove.innerHTML = "Remove";
+                var projectid = project[i]._id;
+                remove.id = projectid;
+                remove.setAttribute( "onClick", "javascript: deleteProject(this.id);this.parentElement.parentElement.parentElement.remove();");
+                // remove.onclick = removeProject;
+                // remove.onlcick = deleteProject(this.id);
+                buttoncontainer.appendChild(remove);
+
+                var addtask = document.createElement("button");
+                addtask.className = "btn--square btn--addContact";
+                addtask.innerHTML = "Add a task";
+                addtask.onclick = addTask;
+                buttoncontainer.appendChild(addtask);//button to add a task
+
+                //a line
+                var hr = document.createElement("hr");
+                projectcard.appendChild(hr);
+
+                //container for tasks
+                var taskcontainer = document.createElement("div");
+                taskcontainer.className = "flexbox task--headercontainer";
+                projectcard.appendChild(taskcontainer);
+
+                //headers
+                var name = document.createElement("div");
+                name.className = "task--headerchild20";
+                name.innerHTML = "Name";
+                taskcontainer.appendChild(name);
+
+                var type = document.createElement("div");
+                type .className = "task--headerchild20";
+                type .innerHTML = "Type";
+                taskcontainer.appendChild(type);
+
+                var status = document.createElement("div");
+                status.className = "task--headerchild20 hide_in_mobile";
+                status.innerHTML = "Status";
+                taskcontainer.appendChild(status);
+
+                var description = document.createElement("div");
+                description.className = "task--headerchild30 hide_in_mobile";
+                description.innerHTML = "Description";
+                taskcontainer.appendChild(description);
+
+                var action = document.createElement("div");
+                action.className = "task--headerchild10";
+                action.innerHTML = "Action";
+                taskcontainer.appendChild(action);
+                
+                // assign id
+                var taskCard = document.createElement("div");
+                taskCard.id = project[i]._id + "taskCard";
+                projectcard.appendChild(taskCard);
+            }
+        }
+
+        function appendData(data) {
+
+            //var flexboxTask = document.getElementById("new flexbox task--card");
+
+            for (var i = 0; i < data.length; i++) {
+                var div_contact = document.createElement("div")
+                div_contact.id = data[i]._id;
+
+                var targetID = data[i].belongsTo;
+                var flexboxTask = document.getElementById(targetID+"taskCard");
+                if (!flexboxTask){
+                    console.log("Target not acquired");
+                    continue;
+                } 
+                var div_name = document.createElement("div");
+                div_name.id = "task_name";
+                div_name.className = "task--headerchild20";
+
+                var div_type = document.createElement("div");
+                div_type.id = "task_type";
+                div_type.className = "task--headerchild20";
+
+                var div_status = document.createElement("div");
+                div_status.id = "task_status";
+                div_status.className = "task--headerchild20 hide_in_mobile";
+
+                var div_description = document.createElement("div");
+                div_description.id = "task_description";
+                div_description.className = "task--headerchild30 hide_in_mobile";
+                
+                var div_button = document.createElement("div");
+                div_button.className = "task--headerchild10";
+
+                //edit button
+                var button_1 = document.createElement("BUTTON");
+                button_1.className = "btn--noborder";
+                button_1.onclick = editTask;
+
+                var button_2 = document.createElement("BUTTON");
+                button_2.className = "btn--noborder";
+                
+
+                var button_3 = document.createElement("BUTTON");
+                button_3.type = "submit";
+                button_3.className = "btn--noborder";
+                button_3.id = data[i]._id;
+                // button_3.onclick = removeTask;
+                button_3.setAttribute( "onClick", "javascript: deleteTask(this.id);this.parentElement.parentElement.parentElement.remove();");
+                
+
+                var image_1 = document.createElement("i");
+                image_1.className = "fas fa-edit";
+
+                var image_2 = document.createElement("i");
+                image_2.className = "fas fa-address-book";
+
+                var image_3 = document.createElement("i");
+                image_3.className = "fas fa-trash";
+
+                button_1.appendChild(image_1);
+                button_2.appendChild(image_2);
+                button_3.appendChild(image_3);
+
+                div_button.appendChild(button_1);
+                // div_button.appendChild(button_2);
+                div_button.appendChild(button_3);
+
+                var div_flexbox = document.createElement("div");
+                div_flexbox.className = "flexbox task--taskcard";
+
+                var div_taskcard = document.createElement("div");
+                
+
+                div_name.innerHTML = data[i].name;
+                div_type.innerHTML = data[i].type;
+                div_status.innerHTML = data[i].status;
+                div_description.innerHTML = data[i].description;
+                
+                div_flexbox.appendChild(div_name);
+                div_flexbox.appendChild(div_type);
+                div_flexbox.appendChild(div_status);
+                div_flexbox.appendChild(div_description);
+                div_flexbox.appendChild(div_button);
+
+                div_taskcard.appendChild(div_flexbox);
+                
+                flexboxTask.appendChild(div_taskcard);
+                div_contact.appendChild(div_flexbox);
+                flexboxTask.appendChild(div_contact);
+            }
+        }
+
+        
+    </script>
+    <script src="../Javascript/switchmode.js"></script>
+
+</body>
+</html>

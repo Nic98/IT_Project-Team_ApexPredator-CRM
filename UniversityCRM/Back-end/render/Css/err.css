@@ -1,0 +1,34 @@
+.error--container{
+    margin: 8% 8%;
+}
+
+.text--errtitle{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.fa-exclamation-triangle{
+    color: orange;
+    margin-right: 10px;
+}
+
+.err--instruction{
+    /* width: 80%; */
+    margin-bottom: 40px;
+}
+
+.text--errinstruction{
+    margin: 0;
+}
+
+.btn--err{
+    background-color: #4787B4;
+    border: none !important;
+    color: white;
+    text-decoration: none;
+}
+
+.btn--err:hover{
+    background-color: deepskyblue;
+    transition-duration: 0.4s;
+}

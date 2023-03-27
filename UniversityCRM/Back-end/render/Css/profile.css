@@ -1,0 +1,113 @@
+.profile--container{
+    padding: 18px 10%;
+    
+
+}
+
+.profilepic--container{
+    width: 100%;
+    max-width: 500px;
+    text-align: center;
+
+
+
+    justify-content: center;
+    margin-bottom: 48px;
+
+
+}
+
+.profilesubmit--container{
+    width: 100%;
+    max-width: 500px;
+    margin-top: 58px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.label{
+    margin-bottom: 4px;
+    color: #092642;
+}
+
+.profileinput--container{
+    margin-top: 18px;
+    width: 100%;
+    max-width: 500px;
+    justify-content: space-between;
+}
+
+.profile--subflex{
+    width: 46%;
+}
+
+.profile--input{
+    border: none;
+    border-radius: 50px;
+    box-shadow: rgb(0 0 0 / 18%) 0px 2px 4px;
+    width: 100%;
+    max-width: 500px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 12px;
+    color: #4B4B4B;
+    height: 28px;
+
+}
+
+.btn--savechanges{
+    padding-top: 4px;
+    padding-bottom: 4px;
+    border: solid 1px #092642 ;
+    background: none;
+    background: white;
+    color: #092642;
+    width: 160px;
+ 
+
+    
+
+}
+
+.btn--savechanges:hover{
+    background: #092642 ;
+    color: white;
+    transition-duration: 0.4s;
+    
+}
+
+.btn--uploudimage{
+    color: #092642;
+    margin: 0;
+    cursor: pointer;
+    margin-top: 6px;
+}
+
+.btn--uploudimage>*{
+    margin: 0;
+}
+
+.fa-upload{
+    margin-right: 4px;
+}
+
+
+
+/*contact detail*/
+.comment--input{
+    border-radius: 12px;
+    height: 100px;
+}
+
+.contactd--imgcontainer>*+*{
+    margin-right: 40px;
+
+}
+
+.profiledetailsubmit--container{
+    width: 100%;
+    max-width: 500px;
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-between;
+}

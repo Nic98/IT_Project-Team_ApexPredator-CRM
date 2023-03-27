@@ -1,0 +1,164 @@
+ body{
+    width: 100%;
+    height: 100%;
+    background: url(../images/registration.png);
+
+}
+
+.registercontainer{
+    justify-content: space-between;
+    height: 100%;
+}
+
+.registercontainer--right{
+    padding: 13%;
+    padding-top: 18%;
+    padding-left: 12%;
+    padding-right: 12%;
+    position: relative;
+    border-bottom-left-radius: 15px;
+    border-top-left-radius: 15px;
+  
+ 
+    width: 50%;
+    min-height: 100%;
+    background: white;
+    z-index: 1;
+}
+
+.phone-number{
+    all:initial;
+    font-family: "Poppins", sans-serif;
+    font-size: small;
+    margin-bottom: auto;
+    margin-left: 10px;
+    color: #6c757d;
+}
+
+.regissubflex{
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.regissubflex>*{
+    width: 45%;
+}
+
+.registrationform>*{
+    margin-bottom: 12px;
+}
+
+.regisbtn--container{
+    margin-top: 40px;
+    flex-direction: row-reverse;
+}
+
+.regisButton{
+    color: #394A50;
+}
+
+.regisButton:hover{
+    color: #253439;
+    box-shadow: 3px 3px 3px;
+    transition-duration: 0.4s;
+}
+
+
+.registext--container{
+    margin: 8%;
+    margin-top: 40%;
+}
+
+.font--registitle{
+    width: 90%;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bolder;
+    font-size: 48px;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.font--regispara{
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 28px;
+    width: 90%;
+    color: white;
+    margin-bottom: 50%;
+    line-height: 1.5;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.btn--backToHome{
+    
+    color: lightgray;
+}
+
+.btn--backToHome>*{
+    text-decoration: none;
+    color: lightgray;
+}
+
+.btn--backToHome:hover{
+    color: white;
+    transition-duration: 0.5s;
+}
+
+.btn--backToHome>*:hover{
+    color: white;
+    transition-duration: 0.5s;
+}
+
+@media only screen and (max-width: 600px){
+    body{
+        width: 100% !important;
+     
+    }
+    .registercontainer{
+        flex-direction: column;
+        width: 100% !important;
+        /* overflow-x: hidden; */
+    }
+
+    .registercontainer--left{
+        width: 100% !important;
+       
+        z-index: 0;
+    }
+
+    .registercontainer--right{
+        width: 100%;
+
+     
+        padding: 0;
+        padding-top: 40px;
+        padding-bottom: 40%;
+        /* width: 100% !important; */
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+       
+
+
+    }
+
+    .registercontainer--right>*{
+        margin: 0 28px;
+    }
+
+    .regisButton{
+        width: 100%;
+    }
+
+    .btn--backToHome{
+        width: 100%;
+        margin-bottom: 50%;
+    }
+
+    .font--regispara{
+        margin-bottom: 48px;
+    }
+
+  
+}
+

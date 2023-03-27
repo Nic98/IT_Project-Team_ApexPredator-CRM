@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Overview</title>
+    <link rel="stylesheet" href="../Css/overall.css">
+    <link rel="stylesheet" href="../Css/overview.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../Css/calendar.css">
+	
+    <script src="https://kit.fontawesome.com/1ee5d6d5b7.js" crossorigin="anonymous"></script>
+    <script src="../Javascript/bootstrap.min.js"></script>
+    <script src="../Javascript/jquery.min.js"></script>
+    <script src="../Javascript/main.js"></script>
+    <script src="../Javascript/popper.js"></script>
+    <script src="../Javascript/loginModal.js"></script>
+    <script src="../Javascript/sidebar.js"></script>
+   
+    <script src="../Components/header.js"></script>
+    <script src="../Components/sidebar.js" type="text/javascript" defer></script>
+
+
+</head>
+
+<body class="flexbox workspace--flex">
+    <!-- <header-component class="show--mobile"></header-component> -->
+   
+    <!-- <sidebar-component></sidebar-component> -->
+    <div class = "workspace--flexchild2  sidebar ">
+        <div class = "logo_content">
+            <div class = "logo">               
+                <div class = "logo_name"> ApexPredator </div>
+                <i class="fas fa-bars" id="btn" onclick="expandSideBar()"></i>
+            </div>
+        </div>
+
+        <ul class="nav_list">
+            <li>
+                <a href="overview.html">
+                    <i class="fas fa-home"></i>
+                    <span class="links_name">Dashboard</span>
+                </a>
+                <span class = "tooltip">Dashboard</span>
+            </li>
+
+            <li>
+                <a href="Contact.html">
+                    <i class="fas fa-user-friends"></i>
+                    <span class="links_name">Contacts</span>
+                </a>
+                <span class = "tooltip">Contacts</span>
+            </li>
+
+            <li>
+                <a href="task.html">
+                    <i class="fas fa-tasks"></i>
+                    <span class="links_name">Tasks</span>
+                </a>
+                <span class = "tooltip">Tasks</span>
+            </li>
+
+            <li>
+                <a href="profile.html">
+                    <i class="fas fa-user-circle"></i>
+                    <span class="links_name">Profile</span>
+                </a>
+                <span class = "tooltip">Profile</span>
+            </li>             
+        </ul> 
+    </div>
+    
+    
+
+    <div class="workspace--flexchild2 home_content">
+        <header-component ></header-component>
+      
+            
+
+        
+
+        <div class="flexbox content-container overviewContent-container">
+            <div class="overviewsubflex1">
+                <div>
+                    <p class="font--overview">
+                        Overview
+                    </p>
+                </div>
+                
+                <div class="flexbox ">
+                    <label class="btn--uploudimage">
+                        <div class="pic--container">
+                            <img class="overview--pic" src="../images/download-1.jpg" alt="">
+                        </div>
+                    </label>
+                 
+                    <div class="welcome--container">
+                        <div class="flexbox">
+                        
+                            <p class="font--hi">
+                                Hi, 
+                            </p>
+                            
+                            <div id="user_name"></div>
+                            <!-- <p class="font--name">
+                                 Name
+                            </p> -->
+
+                        </div>
+                        
+                        <p class="font--welcometext">
+                            Welcome back! Here's your activities today.
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="recentcard--container">
+                    <p class="font--cardtitle">
+                        Recent Projects
+                    </p>
+
+                    <div id="recentProjectsContainer" class="flexbox taskflex">
+                        <!-- <div class="taskcard--container">
+                            <p>
+                                IT Project(Comp 30022_2021_SEM2)
+                            </p>
+                        </div> -->
+                     
+                    </div>
+
+                    <div ></div>
+                    
+                    <div class="flexbox seeall--container">   
+                        <a class="font--seeall" href="./task.html">see all</a>
+                    </div>
+
+                </div>
+
+                
+                
+                <div class="recentcard--container">
+                    <p class="font--cardtitle">
+                        Recent Contacts
+                    </p>
+                    
+                    <!-- <div>
+                        <div class="flexbox onerecentcantact">
+
+                            <div class="recentcontact--name">
+                                <p>George L Derrington</p>
+                            </div>
+
+                            <div class="recentcontact--email">
+                                <p>GL.gmail.com</p>
+                            </div>
+
+                            <div class="recentcontact--phonenum">
+                                <p>(08) 8376 0539</p>
+                            </div>
+
+                        </div>
+                    </div> -->
+
+                    <div id="recentContactContainer"></div>
+
+                    <div class="flexbox seeall--container">   
+                        <a class="font--seeall" href="./Contact.html">see all</a>
+                    </div>
+                </div>
+
+
+            </div>
+            <div class="overviewsubflex2 ">
+                <div class="recentcard--eventcontainer ">
+                    <p class="font--cardtitle">
+                        Upcoming Events
+                    </p>
+                    <div>
+                        <div class="flexbox oneevent">
+                            <p>
+                                Sep 08, Wed
+                            </p>
+                            <p>
+                                Meeting with client
+                            </p>
+    
+                        </div>
+    
+                    </div>
+
+                </div>
+                
+                
+
+            </div>
+            
+
+        </div>
+
+       
+           
+        
+            
+        
+
+    </div>
+    <script>
+
+        fetch('/overview/getTopContact')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (contacts) {
+                appendContact(contacts);
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+
+        // fetch('/overview/getCategory')
+        //     .then(function (response) {
+        //         return response.json();
+        //     })
+        //     .then(function (projects) {
+        //         appendCategory(projects);
+        //     })
+        //     .catch(function (err) {
+        //         console.log('error: ' + err);
+        //     });
+
+        fetch('/profile/getProfile')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (details) {
+                appendData(details);
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+    
+        // fetch('/overview/getRecentTask')
+        //     .then(function (response) {
+        //         return response.json();
+        //     })
+        //     .then(function (reTask) {
+        //         getRecentTask(reTask);
+        //     })
+        //     .catch(function (err) {
+        //         console.log('error: ' + err);
+        //     });
+
+
+
+        fetch('/overview/getCategory')
+            .then(function (response) {
+                return response.json();
+            })
+            .then(function (projects) {
+                appendCategory(projects);
+                return fetch('/overview/getRecentTask')
+                    .then(function (response) {
+                        return response.json();
+                    })
+                    .then(function (reTask) {
+                        getRecentTask(reTask);
+                    })
+                    .catch(function (err) {
+                        console.log('error: ' + err);
+                    });
+            })
+            .catch(function (err) {
+                console.log('error: ' + err);
+            });
+
+
+        function getRecentTask(reTask) {
+
+            for (var i = 0; i < reTask.length; i++) {
+                var targetCard = document.getElementById(reTask[i].categroy);
+                
+                if (targetCard !== null && targetCard.childElementCount <3) {
+                    var div_task = document.createElement("div");
+                    div_task.innerHTML = reTask[i].name;
+                    div_task.className = "sub-task";
+                    targetCard.appendChild(div_task);
+                }
+                
+
+            }
+        }
+
+        function appendContact(contacts){
+            var flexboxContacts = document.getElementById("recentContactContainer");
+            for (var i = 0; i < 5; i++) {
+                var div_contact = document.createElement("div");
+                div_contact.className = "flexbox onerecentcantact";
+
+                var div_name = document.createElement("div");
+                div_name.className = "recentcontact--name"
+                div_name.innerHTML = contacts[i].name;
+
+                var div_email = document.createElement("div");
+                div_email.className = "recentcontact--email"
+                div_email.innerHTML = contacts[i].email_address;
+
+                var div_pn = document.createElement("div");
+                div_pn.className = "recentcontact--phonenum"
+                div_pn.innerHTML = contacts[i].phone_number;
+
+                div_contact.appendChild(div_name);
+                div_contact.appendChild(div_email);
+                div_contact.appendChild(div_pn);
+
+                flexboxContacts.appendChild(div_contact);
+            }
+        }
+
+        function appendCategory(projects) {
+            var flexboxProject = document.getElementById("recentProjectsContainer");
+            for (var i = 0; i < 3; i++) {
+                // var div_project = getElementById
+                // var div_project = document.createElement("div");
+                // div_project.className = "flexbox taskflex";
+
+                var div_name = document.createElement("div");
+                div_name.className = "taskcard--container";
+                div_name.innerHTML = projects[i].name;
+                div_name.id = projects[i].name;
+                // div_project.appendChild(div_name);
+                
+                flexboxProject.appendChild(div_name);
+            }
+        }
+
+        function appendData(details) {
+            var div_name = document.getElementById("user_name");
+            div_name.className = "font--name";
+            div_name.innerHTML = details.first_name;
+        }
+    </script>
+     <script src="../Javascript/switchmode.js"></script>
+   
+</body>
+</html>

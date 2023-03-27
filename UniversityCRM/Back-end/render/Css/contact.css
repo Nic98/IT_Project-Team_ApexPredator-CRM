@@ -1,0 +1,230 @@
+.contact--container{
+    background: white;
+    width: 100%;
+    min-height: 600px;
+    height: fit-content;
+    border-radius: 12px;
+    box-shadow: rgb(0 0 0 / 18%) 0px 2px 5px;
+    padding: 28px;
+    padding-top: 20px;
+
+}
+
+.contact--functionalContainer{
+    /* background: red; */
+    width: 100%;
+    height: 54px;
+    flex-direction: row-reverse;
+    margin-bottom: 20px;
+}
+
+.contact--functionalContainer>*+*{
+    margin-right: 10px;
+}
+
+.btn--addContact{
+    background: none;
+    border: solid 2px #032444;
+    color: #032444;
+    font-weight: bold;
+    height: 100%;
+    /* box-shadow: rgb(0 0 0 / 18%) 0px 2px 5px; */
+
+}
+
+.btn--addContact:hover {
+    background: #032444;
+    color: white;
+    transition-duration: 0.4s;
+}
+
+.btn--sort{
+    border: solid 2px #EFEFEF;
+    color: #4B4B4B;
+    font-weight: bold;
+    /* margin: 0; */
+    
+    /* box-shadow: rgb(0 0 0 / 18%) 0px 2px 3px; */
+}
+
+.btn--sort:hover{
+    border: solid 2px #032444;
+    color: #032444;
+    background: #F7F7F7;
+    transition-duration: 0.4s;
+  
+
+}
+
+.contact--contentContainer{
+    /* background: blue; */
+    width: 100%;
+    height: fit-content;
+    padding: 10px 0px;
+    
+}
+
+.contact--header{
+    width: 100%;
+    height: 40px;
+    /* background: green; */
+    /* justify-content: space-around; */
+    padding: 0px 10px;
+    margin-bottom: 10px;
+}
+
+.font--contactHeader{
+    font: 24px;
+    font-weight: bold;
+    color: black;
+
+}
+
+.text--center{
+    width: 20%;
+    text-align: center;
+    /* font: 24px;
+    font-weight: bold; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #3C4A4F;
+    background: none;
+    border: none;
+}
+
+
+
+.text--center>p{
+    margin: 0;
+    color: #3C4A4F;
+}
+
+.contact--card{
+    background: #FBFBFB;
+    width: 100%;
+    height: 60px;
+    box-shadow: rgb(0 0 0 / 18%) 0px 2px 5px;
+    margin-bottom: 8px;
+}
+
+.action--container{
+    flex-direction: row;
+}
+
+.action--container>*{
+    color: #3C4A4F;
+    font-size: large;
+
+}
+
+.action--container>*+*{
+    margin-left: 10px;
+}
+
+
+.addcontact--card{
+    border: none;
+    /* border: solid 1px #4B4B4B; */
+    background: white;
+}
+
+.width20{
+    width: 20%;
+    border: none;
+
+}
+
+/* detail */
+#contactpage{
+    display: none;
+}
+.detailContainer{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: white;
+    border: solid 2px darkgray;
+    border-radius: 6px;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: none;
+    overflow-y: scroll;
+}
+
+.detail--modal{
+    width: 56%;
+    max-width: 540px;
+    height: fit-content;
+    /* max-height: 580px; */
+    background: #FBFBFB;
+    margin: 100px auto;
+    margin-left: auto;
+    margin-right: auto;
+    display: none;
+    border-radius: 6px;
+    padding: 4%;
+    /* overflow-y: scroll; */
+
+    position: relative;
+    animation-name: animatetop;
+    animation-duration: 0.4s;
+
+}
+
+#btn--cancel{
+    border: solid 1px #4B4B4B;
+    background: none;
+    color: #4B4B4B;
+}
+
+#btn--cancel:hover{
+    background: #4B4B4B;
+    color: #EFEFEF;
+    transition-duration: 0.4s;
+}
+
+.dropdown--container{
+    text-align: end;
+
+}
+
+.dropdown--content{
+    flex-direction: column;
+    border: none;
+    background-color: #F7F7F7;
+    display: none;
+    
+}
+
+.dropdown--container:hover .dropdown--content{
+    display: flex;
+}
+
+.dropdown--content>*{
+    border: none;
+    padding: 10px 20px;
+    z-index: 3;
+    background-color: #F7F7F7;
+    
+}
+
+.dropdown--content>*:hover{
+    background-color:  #212529;
+    color: #F7F7F7;
+    transition-duration: 0.4s;
+}
+
+@keyframes animatetop {
+    from{top: -300px; opacity: 0;}
+    to {top: 0px; opacity: 1;}    
+}
+
+@media only screen and (max-width: 600px){
+    .detail--modal{
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        margin-top: 50px;
+    }
+}

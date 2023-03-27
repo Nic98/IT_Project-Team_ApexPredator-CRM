@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link rel="stylesheet" href="../Css/overall.css">
+    <link rel="stylesheet" href="../Css/homepage.css">
+    <!-- <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css"> -->
+    <script src="https://kit.fontawesome.com/1ee5d6d5b7.js" crossorigin="anonymous"></script>
+    <script src="../Javascript/loginModal.js"></script>
+</head>
+<body>
+    <div class="flexbox homeHeader">
+        <div>
+            <i class="fas fa-user-circle"></i>
+        </div>
+        <div>
+            <button onclick="getLoginModal()" id="login--btn" class="login--btn" href="">SIGN IN</button>
+        </div>
+        <div class="vl">
+            <span>|</span>
+        </div>
+        <div>
+            <a href="./registration.html">REGISTER NOW</a>
+        </div>
+        
+    </div>
+
+    <div id="login--modal">
+        <div class="login-container">
+           
+            <p class="font--LoginTitle">
+                Log in
+            </p>
+            <p class="font--loginwelcome">
+                Welcome back to us :)
+            </p>
+            
+            <form class="loginform" action="?", metho='POST'>
+                <div>
+                    <input class="login--input" type="email_address" name="email_address" placeholder="Email">
+                </div>
+                <div>
+                    <input class="login--input" lable="password" type="password" name="password" placeholder="Password">
+                </div>
+
+            </form>
+            <div class="flexbox loginmodal--btncontainer">
+                <button onclick="closeLoginModal()" class="btn--line" id="logincancel--btn">Cancel</button>
+                <button onclick="closeLoginModal()" class="btn--solid" id="loginbtn">Log in</button>
+            </div>
+            <div class="signuphint--container">
+                <p>Don't have an account? <a href="">Sign up now</a>!</p>
+            </div>
+
+            
+
+        </div>
+
+    </div>
+
+    <div class="flexbox homePic--container">
+        <div class="flexbox home--subcontainer">
+            <p class="font--welcome">Welcome To</p>
+            <p class="font--apex">APEXPREDATOR CRM</p>
+            <div class="paragraph--container">
+                <p class="font--paragraph">
+                    Help you managing all your company’s relationships
+                     and interactions with customers and potential customers!
+                </p>
+            </div>
+            
+           
+
+            <div class="flexbox home--buttoncontainer">
+                <div>
+                    <button class="btn--line" onclick="getLoginModal()">
+                        LOG IN AS USER
+                    </button>
+                </div>
+                <div>
+                    <button class="btn--solid btn--getstarted">
+                        <a href="./registration.html">GET STARTED NOW</a>
+                        
+                    </button>
+                </div>
+                
+                
+            </div>
+
+
+        </div>
+        
+        
+    </div>
+
+    <div class="flexbox homeintro--container">
+        <div class="homeintro--leftsub">
+            <p class="font--title">
+                ApexPredator CRM
+            </p>
+            <div class="homeintro--child">
+                <p>
+                    Help you managing all your company’s
+                     relationships and interactions with customers and potential customers!  
+    
+                </p>
+            </div>
+            
+            <button class="btn--solid btn--getstarted">
+                GET STARTED NOW
+            </button>
+
+        </div>
+
+        <div class="homeintro--rightsub">
+            <img class="modesshow--img" src="../images/modeshow.png" alt="modeshow">
+
+
+        </div>
+
+    </div>
+    <div class="featuretitle--container">
+        We have lots of features to help you :)
+    </div>
+
+    <div class="flexbox features--container">
+        <div>
+            <div>
+                <img src="../images/task.png" alt="taskicon">
+            </div>
+        
+
+        </div>
+        <div>
+            <div>
+                <img src="../images/Icon awesome-handshake.png" alt="communicateicon">
+            </div>
+         
+
+        </div>
+        <div>
+            <div>
+                <img src="../images/Icon awesome-mobile-alt.png" alt="responsiveicon">
+            </div>
+         
+
+        </div>
+        
+
+    </div>
+    <div class="flexbox features--container">
+        <div>
+            
+            <div class="featuretext--sub">
+                <p class="font--bold font--largrsize">
+                    Management
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eir
+                </p>
+            </div>
+
+        </div>
+        <div>
+            
+            <div class="featuretext--sub">
+                <p class="font--bold font--largrsize">
+                    Track Communications
+                </p>
+                <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eir</p>
+            </div>
+
+        </div>
+        <div>
+            
+            <div class="featuretext--sub">
+                <p class="font--bold font--largrsize">
+                    Responsive Design
+                </p>
+                <p>Access CRM on your mobile devices and manage your schedules anywhere.  </p>
+            </div>
+
+        </div>
+        
+
+    </div>
+    <div class="homefooter">
+        @APEXPREDATOR
+
+    </div>
+
+   
+
+    
+</body>
+</html>
